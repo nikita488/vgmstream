@@ -56,7 +56,7 @@ typedef enum {
     YMZ,
     ULAW,
     ALAW,
-	UBI_IMA
+	UBI_IMA,
 
     UNKNOWN = 255,
 } txth_codec_t;
