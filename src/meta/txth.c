@@ -56,6 +56,7 @@ typedef enum {
     YMZ,
     ULAW,
     ALAW,
+	UBI_IMA
 
     UNKNOWN = 255,
 } txth_codec_t;
@@ -301,6 +302,7 @@ VGMSTREAM* init_vgmstream_txth(STREAMFILE* sf) {
         case XA:            coding = coding_XA; break;
         case XA_EA:         coding = coding_XA_EA; break;
         case CP_YM:         coding = coding_CP_YM; break;
+        case UBI_IMA:       coding = coding_UBI_IMA; break;
         default:
             goto fail;
     }
@@ -430,6 +432,7 @@ VGMSTREAM* init_vgmstream_txth(STREAMFILE* sf) {
         case coding_XA:
         case coding_XA_EA:
         case coding_CP_YM:
+        case coding_UBI_IMA:
             vgmstream->layout_type = layout_none;
             break;
 
@@ -1011,6 +1014,7 @@ static txth_codec_t parse_codec(txth_header* txth, const char* val) {
     else if (is_string(val,"HEVAG"))        return HEVAG;
     else if (is_string(val,"ULAW"))         return ULAW;
     else if (is_string(val,"ALAW"))         return ALAW;
+    else if (is_string(val,"UBI_IMA"))      return UBI_IMA;
     /* special handling */
     else if (is_string(val,"name_value"))   return txth->name_values[0];
     else if (is_string(val,"name_value1"))  return txth->name_values[0];
